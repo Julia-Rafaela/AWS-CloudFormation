@@ -54,15 +54,10 @@ Permite criar recursos só se uma condição for verdadeira. Exemplo: só cria o
 Como usar isso na prática?
 
 Você escreve o template
-
 Valida o template (pra ver se tem erro)
-
 Usa o console da AWS ou a linha de comando (CLI) pra criar a stack
-
 O CloudFormation cria tudo automaticamente
-
 Quando quiser mudar, você edita o template e roda um update
-
 Quando não precisar mais, deleta a stack e ele remove tudo
 
 Comandos básicos (pra treinar com a AWS CLI)
@@ -77,3 +72,8 @@ aws cloudformation update-stack --stack-name minha-stack --template-body file://
 
 # Deletar a stack
 aws cloudformation delete-stack --stack-name minha-stack
+
+Considerações sobre Segurança e Boas Práticas
+Princípio do Menor Privilégio: Defina permissões mínimas para acessar recursos.
+Utilização de Parâmetros Sensíveis: Para senhas ou informações confidenciais, utilize o AWS Secrets Manager ou SSM Parameter Store para gerenciar dados sensíveis.
+Automação de Testes: Teste seus templates regularmente para garantir que eles criam a infraestrutura de forma segura e sem erros.
