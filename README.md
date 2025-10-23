@@ -60,6 +60,11 @@ O CloudFormation cria tudo automaticamente
 Quando quiser mudar, você edita o template e roda um update
 Quando não precisar mais, deleta a stack e ele remove tudo
 
+Considerações sobre Segurança e Boas Práticas
+Princípio do Menor Privilégio: Defina permissões mínimas para acessar recursos.
+Utilização de Parâmetros Sensíveis: Para senhas ou informações confidenciais, utilize o AWS Secrets Manager ou SSM Parameter Store para gerenciar dados sensíveis.
+Automação de Testes: Teste seus templates regularmente para garantir que eles criam a infraestrutura de forma segura e sem erros.
+
 Comandos básicos (pra treinar com a AWS CLI)
 # Validar o template
 aws cloudformation validate-template --template-body file://template.yaml
@@ -73,7 +78,21 @@ aws cloudformation update-stack --stack-name minha-stack --template-body file://
 # Deletar a stack
 aws cloudformation delete-stack --stack-name minha-stack
 
-Considerações sobre Segurança e Boas Práticas
-Princípio do Menor Privilégio: Defina permissões mínimas para acessar recursos.
-Utilização de Parâmetros Sensíveis: Para senhas ou informações confidenciais, utilize o AWS Secrets Manager ou SSM Parameter Store para gerenciar dados sensíveis.
-Automação de Testes: Teste seus templates regularmente para garantir que eles criam a infraestrutura de forma segura e sem erros.
+Template CloudFormation Simples (YAML):
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Exemplo simples - cria uma instância EC2
+
+Resources:
+  MinhaInstancia:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0abcdef1234567890 # Substitua por uma AMI válida da sua região
+
+
+Esse arquivo é uma descrição em código da infraestrutura que você quer criar.
+Ele diz para a AWS:
+
+“Crie uma instância EC2 (máquina virtual) do tipo t2.micro, usando essa imagem (AMI) específica.”
+
